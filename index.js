@@ -20,8 +20,6 @@ app.get('/', function(req, res){
 });
 
 app.post('/send',function(req,res){
-    // var keyName = req.body;
-    // console.log(keyName);
     var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
@@ -42,9 +40,10 @@ app.post('/send',function(req,res){
     	subject: 'New Message from your Website',
         // number: req.body.number,
         text : message2,
-        html: `<h1>${req.body.name}</h1>
-                <p>${req.body.text}</p>
-                <p><b>${req.body.number}</b></p>`
+        html: `<h3>Name: ${req.body.name}</h3>
+                <p>Message: ${req.body.text}</p>
+                <p>Email: ${req.body.email}</p>
+                <p>Phone Number: ${req.body.number}</p>`
     }
     console.log(mailOptions);
     console.log(req.body.number);
@@ -55,7 +54,7 @@ app.post('/send',function(req,res){
      }else{
             console.log("Message sent: ");
         // res.render('public');
-        res.end("sent");
+            res.redirect("/contact.html");
          }
 });
 });
