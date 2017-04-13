@@ -49,8 +49,8 @@ app.post('/send',function(req,res){
     console.log(req.body.number);
     smtpTransport.sendMail(mailOptions, function(error, response){
      if(error){
-            console.log(error);
-        res.end("error");
+          return  console.log(error);
+        // res.end("error");
      }else{
             console.log("Message sent: ");
         // res.render('public');
